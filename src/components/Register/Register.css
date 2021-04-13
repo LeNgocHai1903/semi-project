@@ -1,0 +1,37 @@
+.Register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../../shared/images/pexels.jpeg);
+  height: 700px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 28%;
+  background-color: rgb(242, 242, 243);
+}
+
+.Card span {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
+
+
+.Register button {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  float: right;
+  margin: 30px 20px 10px 10px;
+}
+
+

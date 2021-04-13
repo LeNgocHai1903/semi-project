@@ -1,0 +1,16 @@
+.mapWrapper {
+    width: 100vw;
+    height: 100vh;
+  }
+
+
+
+  .AddInput {
+    width:40%;
+    position: relative;
+  }
+  .AddInput input {
+    height:50px;
+    background-color: RGB(252, 253, 253);
+
+  }

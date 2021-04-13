@@ -1,0 +1,23 @@
+.Home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.Home img {
+    max-width:100%;
+}
+
+.Home p {
+    width: 395px;
+    margin-bottom:40px;
+}
+.Home button {
+    width: 395px;
+    height:60px;
+}
+.Home i {
+    margin-left: 20px;
+}

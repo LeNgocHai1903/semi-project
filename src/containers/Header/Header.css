@@ -1,0 +1,30 @@
+.Header {
+    height:50px;
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+}
+
+.Header i {
+    display: flex;
+    margin-right: 15px;
+}
+
+
+.Logo {
+    display: inline-flex;
+    align-items: center;
+}
+
+.UberLogo {
+    height:40px;
+    width: 40px;
+    display: flex;
+    border-radius: .5rem;
+    margin-left: 10px;
+}
+
+.UberText {
+    height:30px;
+    width: 80px;
+}

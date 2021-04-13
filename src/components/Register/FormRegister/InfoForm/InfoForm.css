@@ -1,0 +1,38 @@
+.Card-Info input {
+    width: 90%;
+    margin-left: 20px;
+    height: 45px;
+    border: none;
+    background-color: RGB(252, 249, 248);
+    box-shadow: 5px 5px 5px rgba(192, 188, 188, 0.904);
+    -moz-box-shadow: 5px 5px 5px rgba(192, 188, 188, 0.904);
+    -webkit-box-shadow: 5px 5px 5px rgba(192, 188, 188, 0.904);
+    -o-box-shadow: 5px 5px 5px rgba(192, 188, 188, 0.904);
+    -ms-box-shadow: 5px 5px 5px rgba(192, 188, 188, 0.904);
+    text-align: center;
+}
+
+.Card-SelectGender img {
+    height:100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.Card-Camera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Card-Camera p {
+    width: 40%;
+}
+
+.Card-Camera img {
+    height:130px;
+    width: 130px;
+    border-radius: 50%;
+    margin: 20px;
+}
