@@ -1,0 +1,38 @@
+.main {
+  height: 700px;
+  background-image: url(../../shared//images/pexels.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContent {
+  height: 80%;
+  width: 90%;
+  margin: auto;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(230, 227, 227, 0.849);
+}
+
+.rightContent p {
+  color: rgb(121, 112, 112);
+}
+
+.leftContent {
+  width: 40%;
+}
+
+.rightContent {
+  width: 40%;
+  margin-left: 10px;
+}
+
+.Text {
+  margin-top: 15px;
+  font-size:14px;
+}

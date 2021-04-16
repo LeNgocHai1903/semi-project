@@ -17,7 +17,8 @@ const PhoneRegister = props => {
               onChange={props.formik.handleChange}
             />
           </div>
-          {props.formik.touched.phoneNumber &&
+
+          {
             props.formik.errors.phoneNumber && (
               <span>{props.formik.errors.phoneNumber}</span>
             )}
@@ -26,15 +27,10 @@ const PhoneRegister = props => {
             Agree Terms and Conditions
           </div>
           <div>
-            {props.formik.values.phoneNumber ? (
-              <button onClick={props.onclick}>
+          {console.log(props.formik)}
+              <button onClick={props.onclick} disabled ={!props.formik.dirty || props.formik.errors.phoneNumber }>
                 <i class="fa fa-2x fa-arrow-right"></i>
               </button>
-            ) : (
-              <button onClick={props.onclick} disabled>
-                <i class="fa fa-2x fa-arrow-right"></i>
-              </button>
-            )}
           </div>
         </div>
       </>

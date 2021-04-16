@@ -1,16 +1,65 @@
 .mapWrapper {
-    width: 100vw;
-    height: 100vh;
-  }
+  width: 100vw;
+  height: 100vh;
+}
 
+.Map {
+  height: 700px;
+}
 
+.AddInput {
+  width: 40%;
+  position: relative;
+}
+.AddInput input {
+  height: 50px;
+  background-color: RGB(252, 253, 253);
+}
 
-  .AddInput {
-    width:40%;
-    position: relative;
-  }
-  .AddInput input {
-    height:50px;
-    background-color: RGB(252, 253, 253);
+.InputField {
+  margin-top: 10px;
+  margin-left: 10px;
+  position: absolute;
+  z-index: 1000;
+  width: 30%;
+  opacity: 0.9;
+}
 
-  }
+.InputField i {
+  font-size: 25px;
+}
+
+.InputField span {
+  font-size: 16px;
+}
+
+.InputField button {
+  padding: 10px;
+  font-size: 12px;
+  background-color: RGB(250, 255, 246);
+  height: 80px;
+  width: 100%;
+  border: none;
+}
+
+.SelectBtn {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+.SelectBtn p {
+  opacity: 0.6;
+}
+.SelectBtn div {
+  margin-right: 20px;
+}
+
+.SelectBtn div {
+  margin-right: 20px;
+}
+
+.TitleBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

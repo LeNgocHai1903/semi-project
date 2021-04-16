@@ -5,9 +5,8 @@ import * as Yup from "yup";
 
 import Phone from "./FormRegister/Phone/Phone";
 import OTP from "./FormRegister/OTPForm/OTPForm";
-import Info from './FormRegister/InfoForm/InfoForm';
+import Info from "./FormRegister/InfoForm/InfoForm";
 import Spinning from "../../containers/UIElements/Spinning/Spinning";
-
 import { connect } from "react-redux";
 import { fetchOTP, confirmOTP } from "../../redux/action";
 
@@ -15,7 +14,7 @@ const mapStateToProps = (state) => {
   return {
     phoneNumber: state.phoneNumber,
     isLoading: state.isLoading,
-    error: state.error,
+    errorAPI: state.error,
     OTPData: state.OTPData,
   };
 };
@@ -37,6 +36,7 @@ class Register extends Component {
       this.setState({ phoneForm: false, otpForm: true, innfoForm: false });
       this.props.fetchOTPHandler();
     };
+    {console.log(this.props.phoneNumber)}
 
     const changeOTPStatus = () => {
       this.props.confirmOTPHandler(
@@ -48,11 +48,12 @@ class Register extends Component {
       );
 
       setTimeout(() => {
-        if (this.props.error === null && this.props.phoneNumber) {
-          this.setState({ phoneForm: false, otpForm: false, innfoForm:true });
+        if (this.props.errorAPI === null && this.props.phoneNumber) {
+          this.setState({ phoneForm: false, otpForm: false, innfoForm: true });
         }
       }, 1000);
     };
+
     return (
       <>
         <form onSubmit={this.props.handleSubmit}>
@@ -72,12 +73,10 @@ class Register extends Component {
                     <OTP
                       formik={this.props}
                       onclick={() => changeOTPStatus()}
-                      error={this.props.error}
+                      errorAPI={this.props.errorAPI}
                     />
                   )}
-                  {this.state.innfoForm && (
-                    <Info formik={this.props}/>
-                  )}
+                  {this.state.innfoForm && <Info formik={this.props} />}
                 </>
               )}
             </div>
@@ -102,20 +101,25 @@ const formik = withFormik({
     // Validate form field
     phoneNumber: Yup.string()
       .matches(phoneRegExp, "Phone number is not valid")
-      .min(0, "Phone number must be 10 characters"),
+      .min(10, "Must be exactly 10 characters")
+      .max(10, "Must be exactly 10 characters"),
     otp1: Yup.string()
-      .matches(numRegExp, "Please enter only number < 10").required("Please fill all the fields")
+      .matches(numRegExp, "Please enter only number < 10")
+      .required("Please fill all the fields")
       .min(0, "Please enter OTP number")
       .max(9, "Only 1 number "),
-    otp2: Yup.string().required("Please fill all the fields")
+    otp2: Yup.string()
+      .required("Please fill all the fields")
       .matches(numRegExp, "Please enter only number < 10")
       .min(0, "Please enter OTP number")
       .max(9, "Only 1 number "),
-    otp3: Yup.string().required("Please fill all the fields")
+    otp3: Yup.string()
+      .required("Please fill all the fields")
       .matches(numRegExp, "Please enter only number < 10")
       .min(0, "Please enter OTP number")
       .max(9, "Only 1 number "),
-    otp4: Yup.string().required("Please fill all the fields")
+    otp4: Yup.string()
+      .required("Please fill all the fields")
       .matches(numRegExp, "Please enter only number < 10")
       .min(0, "Please enter OTP number")
       .max(9, "Only 1 number "),
