@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import {createStore, applyMiddleware} from 'redux';
 import {OTPReducer} from './redux/reducer';
 
+
 const store = createStore(OTPReducer,applyMiddleware(thunk));
 
 ReactDOM.render(

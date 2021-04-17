@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import {
   Marker,
   TileLayer,
@@ -9,123 +10,94 @@ import {
 
 import "./Booking.css";
 
-const L = window.L;
+import BookingConfirm from "./BookingConfirm/BookingConfirm";
 
 const Booking = (props) => {
-  const fromLocationData = [
-    {
-      name: "Home",
-      address: "18 Tăng Bạt Hổ, phường 11, quận Bình Thạnh, Hồ Chí Minh",
-      lat: "10.811170",
-      lng: "106.694150",
-    },
-    {
-      name: "Company",
-      address: "364 Cộng Hòa, phường 13, quận Tân Bình, Hồ Chí Minh",
-      lat: "10.802340",
-      lng: "106.644730",
-    },
-    {
-      name: "The Coffee House D2",
-      address: "157 Nguyễn Gia Trí, phường 11, quận Bình Thạnh, Hồ Chí Minh",
-      lat: "10.805870",
-      lng: "106.713220",
-    },
-  ];
+  const [fromLocation, setFromLocation] = useState({
+    lat: "",
+    lng: "",
+    isShow: true,
+    address: ""
+  });
+  const [toLocation, setToLocation] = useState({
+    lat: "",
+    lng: "",
+    isShow: false,
+    address: ""
+  });
 
-  const toLocationData = [
-    {
-      name: "Home",
-      address: "18 Tăng Bạt Hổ, phường 11, quận Bình Thạnh, Hồ Chí Minh",
-      lat: "10.811170",
-      lng: "106.694150",
-    },
-    {
-      name: "Company",
-      address: "364 Cộng Hòa, phường 13, quận Tân Bình, Hồ Chí Minh",
-      lat: "10.802340",
-      lng: "106.644730",
-    },
-    {
-      name: "Hồ Con Rùa",
-      address: "157 Nguyễn Gia Trí, phường 11, quận Bình Thạnh, Hồ Chí Minh",
-      lat: "10.782668",
-      lng: "106.695876",
-    },
-  ]
-
-  const [fromLocation, setFromLocation] = useState ({lat:"10.762622", lng :"106.660172"})
-  const [toLocation,setToLocation] = useState ({lat:"", lng :""});
-
-  // const getDistance = ([from], [to]) => {
-  //   var markerFrom = L.circleMarker([10.762622, 106.660172]);
-  //   var markerTo = L.circleMarker([16.047079, 108.20623]);
-  //   var from = markerFrom.getLatLng();
-  //   var to = markerTo.getLatLng();
-  //   map.addLayer(markerTo);
-  //   map.addLayer(markerFrom);
-  //   from.distanceTo(to);
-  //   console.log(markerFrom._latlng);
-  //   console.log(from.distanceTo(to).toFixed(0) / 1000);
-  // };
+  //GeoSreach
 
   const SelectFromLocation = () => {
     const [position, setPosition] = useState(null);
     const map = useMapEvents({
       click() {
         map.locate();
+        map.addControl(searchControl);
       },
       locationfound(e) {
-        console.log(e.latlng)
         setPosition(e.latlng);
         map.flyTo(e.latlng, map.getZoom());
       },
     });
-    var markerFrom = L.circleMarker([fromLocation.lat, fromLocation.lng]);
-    var from = markerFrom.getLatLng();
-    map.flyTo(from, map.getZoom());
+    const provider = new OpenStreetMapProvider();
+    const searchControl = new GeoSearchControl({
+      provider: provider,
+      style: "bar",
+      autoComplete: true, // optional: true|false  - default true
+      autoCompleteDelay: 250, // optional: number      - default 250
+      resultFormat: ({ result }) => console.log(result),
+      popupFormat: ({ query, result }) =>
+        setFromLocation({
+          lat: query.data.y,
+          lng: query.data.x,
+          isShow: false,
+          address: query.query
+        }),
 
-    console.log(fromLocation.lat)
-    return position ? null : (
-      <Marker position={fromLocation}>
+       
+      searchLabel: "Where to? ",
+      showMarker: true,
+    });
+    // setShowSearch({from: false,to: true})
+
+    return position === null ? null : (
+      <Marker position={position}>
         <Popup>You are here</Popup>
       </Marker>
     );
-  }
+  };
 
-  // function LocationMarker() {
-  //   const [position, setPosition] = useState(null);
-  //   const map = useMapEvents({
-  //     click() {
-  //       map.locate();
-  //     },
-  //     locationfound(e) {
-  //       console.log(e.latlng)
-  //       setPosition(e.latlng);
-  //       map.flyTo(e.latlng, map.getZoom());
-  //     },
-  //   });
-  //   var markerFrom = L.circleMarker([fromLocation.lat, fromLocation.lng]);
-  //   var markerTo = L.circleMarker([toLocation.lat, toLocation.lng]);
-  //   var from = markerFrom.getLatLng();
-  //   var to = markerTo.getLatLng();
-  //   map.addLayer(markerTo);
-  //   map.addLayer(markerFrom);
-  //   map.flyTo(from, map.getZoom());
-  //   from.distanceTo(to);
-  //   console.log(from.distanceTo(to).toFixed(0) / 1000);
+  //////
 
-  //   return position === null ? null : (
-  //     <Marker position={[fromLocation.lat, fromLocation.lng].getLatLng()}>
-  //       <Popup>You are here</Popup>
-  //     </Marker>
-  //   );
-  // }
+  const SelectToLocation = () => {
+    const map = useMapEvents({
+      click() {
+        map.addControl(searchControl);
+      },
+      locationfound(e) {
+        map.flyTo(e.latlng, map.getZoom());
+      },
+    });
+    const provider = new OpenStreetMapProvider();
+    const searchControl = new GeoSearchControl({
+      provider: provider,
+      style: "bar",
+      autoComplete: true, // optional: true|false  - default true
+      autoCompleteDelay: 250, // optional: number      - default 250
+      resultFormat: ({ result }) => result.label,
+      popupFormat: ({ query, result }) =>
+        setToLocation({ lat: query.data.y, lng: query.data.x, isShow: true, address:query.query }),
+      searchLabel: "Where You Want To Go? ",
+      showMarker: true,
+    });
 
-  const selectLocationHandler = (lat,lng) => {
-    setFromLocation({lat, lng});
-  }
-
+    return (
+      <Marker position={[toLocation.lat, toLocation.lng]}>
+        <Popup>You are here</Popup>
+      </Marker>
+    );
+  };
 
   return (
     <MapContainer
@@ -134,37 +106,15 @@ const Booking = (props) => {
       scrollWheelZoom={false}
       className="Map"
     >
-      <div className="InputField">
-        <button
-          className="TitleBtn"
-          style={{ backgroundColor: "RGB(251, 252, 253)" }}
-        >
-          {" "}
-          <div>
-            <i className="fa fa-square"></i> <span>Where to? Use your own location ?</span>{" "}
-          </div>
-          <div>
-            <i className="fa fa-2x fa-search"></i>
-          </div>
-        </button>
-        {fromLocationData.map((l) => (
-          <button className="SelectBtn" onClick={() => selectLocationHandler(l.lat,l.lng)}>
-            <div>
-              <i className="fa fa-map-marker"></i>
-            </div>
-            <div>
-              <span>{l.name}</span>
-              <p>{l.address}</p>
-            </div>
-          </button>
-        ))}
-      </div>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {/* <LocationMarker /> */}
-      <SelectFromLocation/>
+      {fromLocation.isShow && <SelectFromLocation />}
+      {!fromLocation.isShow && !toLocation.isShow && <SelectToLocation />}
+      {toLocation.isShow && (
+        <BookingConfirm from={fromLocation} to={toLocation} />
+      )}
     </MapContainer>
   );
 };

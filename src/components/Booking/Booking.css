@@ -7,7 +7,33 @@
   height: 700px;
 }
 
-.AddInput {
+.leaflet-touch .leaflet-geosearch-bar form input {
+  height: 60px;
+  background: url(../../shared/images/icons8-search-16.png) no-repeat 0px 0px;
+  background-position: left;
+}
+
+.leaflet-control-geosearch form input {
+  padding-left: 30px;
+}
+
+.leaflet-control-geosearch .results > * {
+  background: url(../../shared/images/icons8-place-marker-16.png) no-repeat 0px 0px;
+  background-position: left;
+  padding-left: 30px;
+    padding-top: 16px;
+  height: 60px;
+}
+.leaflet-geosearch-bar form {
+  width: 500px;
+  position: fixed;
+  top: 60px;
+  left: 60px;
+  display: block;
+  border-radius: 4px;
+}
+
+/* .AddInput {
   width: 40%;
   position: relative;
 }
@@ -62,4 +88,4 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+} */

@@ -1,0 +1,59 @@
+.BookingConfirm {
+    background-color: RGB(241, 244, 245);
+    position: fixed;
+    z-index: 1000;
+    top: 60px;
+    left: 60px;
+    cursor:default;
+}
+
+.BookingConfirm-Input {
+   height:70px;
+   width:500px;
+   margin-top:10px;
+   background-color:RGB(252, 253, 253);
+   display:flex;
+   align-items:center;
+   padding-left: 10px;
+}
+
+.BookingConfirm-Input div {
+    display:flex;
+    margin-left: 35px;
+    flex-direction: column;
+ }
+
+ .BookingConfirm-Input div label {
+    font-size: 15px;
+ }
+
+ .BookingConfirm-Input div span {
+    font-size: 10px;
+ }
+
+
+ .BookingConfirm-Last {
+     display: flex;
+     align-items: center;
+     justify-content:space-between;
+     padding: 10px;
+ }
+ .BookingConfirm-Back{
+     height: 90px;
+     display:flex;
+     align-items: center;
+     font-size: 18px;
+ }
+
+ .BookingConfirm-Continue  button{
+    height: 60px;
+    width:250px;
+    background-color: rgba(0, 0, 0, 0.534);
+    border-radius:0.3rem;
+    display:flex;
+    align-items: center;
+    font-size:18px;
+    flex-direction: row-reverse;
+    border: none;
+    padding:10px;
+ }
