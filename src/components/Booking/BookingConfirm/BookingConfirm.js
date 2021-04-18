@@ -12,7 +12,7 @@ const BookingConfirm = (props) => {
         var from = markerFrom.getLatLng();
         var to = markerTo.getLatLng();
             setDistance((from.distanceTo(to)).toFixed(0)/1000);
-    })
+    },[props.from.lat,props.from.lng,props.to.lat,props.to.lng])
 
   return (
     <div className="BookingConfirm">
@@ -38,14 +38,14 @@ const BookingConfirm = (props) => {
         <i className="fa fa-2x fa-money"></i>
         <div>
           <label>
-            <b>Prize: </b>
+            <b>Prize: {(distance * 0.8).toFixed(2)} $ </b>
           </label>
           <span>Kilometer: {distance} km </span>
-          <span>Time: {distance * 5} minutes</span>
+          <span>Time: {(distance * 5).toFixed(2)} minutes</span>
         </div>
       </div>
       <div className="BookingConfirm-Last">
-        <div className="BookingConfirm-Back">
+        <div className="BookingConfirm-Back" onClick={props.onBackClick}>
           <i
             className="fa fa-2x fa-arrow-left"
             style={{ marginRight: "10px" }}

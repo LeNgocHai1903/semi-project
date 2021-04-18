@@ -43,11 +43,11 @@ const InfoForm = (props) => {
           <p>Upload profile picture</p>
         </div>
         {props.formik.isValid && props.formik.dirty ? (
-          <button onClick={props.onclick}>
+          <button type="submit" onClick={props.onclick}>
             <i class="fa fa-2x fa-arrow-right"></i>
           </button>
         ) : (
-          <button onClick={props.onclick} disabled>
+          <button type="submit" onClick={props.onclick} disabled>
             <i class="fa fa-2x fa-arrow-right"></i>
           </button>
         )}

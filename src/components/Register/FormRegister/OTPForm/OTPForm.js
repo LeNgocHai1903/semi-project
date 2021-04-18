@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./OTPForm.css";
 
 const OTPForm = (props) => {
@@ -54,14 +54,17 @@ const OTPForm = (props) => {
         {props.errorAPI && <span>{props.errorAPI}</span>}
         <div className="OTPBtn">
           <a href="/"> I didn't receive code</a>
-          {props.formik.isValid && props.formik.dirty ? (
-            <button onClick={props.onclick}>
-              <i class="fa fa-2x fa-arrow-right"></i>
-            </button>
-          ) : (
+          {props.formik.errors.otp1 ||
+          props.formik.errors.otp2 ||
+          props.formik.errors.otp3 ||
+          props.formik.errors.otp4 ? (
             <button onClick={props.onclick} disabled>
               <i class="fa fa-2x fa-arrow-right"></i>
             </button>
+          ) : (
+              <button onClick={props.onclick}>
+                <i class="fa fa-2x fa-arrow-right"></i>
+              </button>
           )}
         </div>
       </div>

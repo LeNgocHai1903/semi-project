@@ -36,7 +36,6 @@ class Register extends Component {
       this.setState({ phoneForm: false, otpForm: true, innfoForm: false });
       this.props.fetchOTPHandler();
     };
-    {console.log(this.props.phoneNumber)}
 
     const changeOTPStatus = () => {
       this.props.confirmOTPHandler(
@@ -96,6 +95,7 @@ const formik = withFormik({
     otp2: "",
     otp3: "",
     otp4: "",
+    userName: ""
   }),
   validationSchema: Yup.object().shape({
     // Validate form field
@@ -123,10 +123,12 @@ const formik = withFormik({
       .matches(numRegExp, "Please enter only number < 10")
       .min(0, "Please enter OTP number")
       .max(9, "Only 1 number "),
+      userName: Yup.string().required("Please enter your name")
   }),
   handleSubmit: (values, { setSubmitting }) => {
-    alert(JSON.stringify(values, null, 2));
+    alert( JSON.stringify(values, null, 2));
     setSubmitting(false);
+    window.location.href = "/booking"
   },
 })(connect(mapStateToProps, mapDispatchToProps)(Register));
 
